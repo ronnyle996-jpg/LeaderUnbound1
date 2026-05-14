@@ -129,27 +129,57 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     
     const callback = (EmbedController) => {
         const musicBtn = document.getElementById('music-toggle');
+        if (!musicBtn) return;
+
         const musicStatus = musicBtn.querySelector('.music-status');
         const iconOn = document.getElementById('music-icon-on');
         const iconOff = document.getElementById('music-icon-off');
+        let hasStarted = false;
+        let userToggled = false;
+
+        const setMusicState = (isPlaying) => {
+            musicBtn.classList.toggle('playing', isPlaying);
+            musicStatus.textContent = isPlaying ? 'ON' : 'OFF';
+            iconOn.style.display = isPlaying ? 'block' : 'none';
+            iconOff.style.display = isPlaying ? 'none' : 'block';
+        };
+
+        const tryAutoplay = () => {
+            if (hasStarted) return;
+            try {
+                setMusicState(true);
+                EmbedController.play();
+                musicBtn.classList.add('is-autoplaying');
+            } catch (error) {
+                console.warn('Spotify autoplay was blocked by the browser:', error);
+            }
+        };
+
+        const unlockAutoplay = () => {
+            tryAutoplay();
+            window.removeEventListener('pointerdown', unlockAutoplay);
+            window.removeEventListener('keydown', unlockAutoplay);
+            window.removeEventListener('touchstart', unlockAutoplay);
+        };
 
         musicBtn.addEventListener('click', () => {
+            userToggled = true;
             EmbedController.togglePlay();
         });
 
         EmbedController.addListener('playback_update', e => {
-            if (e.data.isPaused) {
-                musicBtn.classList.remove('playing');
-                musicStatus.textContent = 'OFF';
-                iconOn.style.display = 'none';
-                iconOff.style.display = 'block';
-            } else {
-                musicBtn.classList.add('playing');
-                musicStatus.textContent = 'ON';
-                iconOn.style.display = 'block';
-                iconOff.style.display = 'none';
-            }
+            const isPlaying = !e.data.isPaused;
+            hasStarted = hasStarted || isPlaying;
+            musicBtn.classList.remove('is-autoplaying');
+            if (!userToggled && !hasStarted) return;
+            setMusicState(isPlaying);
         });
+
+        setMusicState(true);
+        tryAutoplay();
+        window.addEventListener('pointerdown', unlockAutoplay, { once: true, passive: true });
+        window.addEventListener('touchstart', unlockAutoplay, { once: true, passive: true });
+        window.addEventListener('keydown', unlockAutoplay, { once: true });
     };
     
     IFrameAPI.createController(element, options, callback);

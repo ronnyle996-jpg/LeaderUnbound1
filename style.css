@@ -1296,6 +1296,444 @@ a { text-decoration: none; color: inherit; }
     .orn-text { font-size: 0.55rem; letter-spacing: 2px; }
 }
 
+@media (max-width: 760px) {
+    body {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .wrap {
+        padding-inline: 18px;
+    }
+
+    .section {
+        padding-block: 72px;
+    }
+
+    .section-heading {
+        font-size: 2.35rem;
+        line-height: 1.12;
+        margin-bottom: 18px;
+    }
+
+    .section-sub {
+        font-size: 0.98rem;
+        margin-bottom: 32px;
+    }
+
+    .section-badge {
+        font-size: 0.62rem;
+        letter-spacing: 1.8px;
+        padding: 6px 14px;
+        margin-bottom: 16px;
+    }
+
+    .section-leaf-deco {
+        display: none;
+    }
+
+    .btn-gold {
+        padding: 13px 22px;
+        font-size: 0.74rem;
+        letter-spacing: 1.1px;
+        line-height: 1.35;
+    }
+
+    .navbar,
+    .navbar.scrolled {
+        padding: 12px 14px;
+    }
+
+    .nav-inner {
+        gap: 10px;
+    }
+
+    .logo {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .logo-avatar {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 auto;
+    }
+
+    .logo-name {
+        font-size: 0.98rem;
+        line-height: 1.12;
+    }
+
+    .logo-title {
+        display: none;
+    }
+
+    .nav-cta {
+        padding: 8px 10px;
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        text-align: center;
+        white-space: normal;
+        max-width: 118px;
+    }
+
+    .hero {
+        min-height: 82svh;
+        padding: 92px 16px 32px;
+    }
+
+    .hero-video-bg {
+        object-position: center;
+    }
+
+    .hero-overlay {
+        background:
+            radial-gradient(ellipse 95% 62% at 50% 34%, rgba(12,39,20,0.38) 0%, transparent 100%),
+            linear-gradient(to bottom, rgba(8,25,12,0.58) 0%, rgba(8,25,12,0.9) 74%, var(--deep-forest) 100%);
+    }
+
+    .hero-heading {
+        font-size: 4rem;
+        line-height: 1.02;
+        letter-spacing: 0;
+        margin-bottom: 18px;
+    }
+
+    .hero-sub {
+        max-width: 300px;
+        margin-inline: auto;
+        font-size: 0.76rem;
+        letter-spacing: 1.6px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
+
+    .ornament-line {
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .orn-line {
+        max-width: 34px;
+    }
+
+    .orn-text {
+        max-width: 230px;
+        white-space: normal;
+        line-height: 1.5;
+        font-size: 0.58rem;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-divider {
+        gap: 14px;
+        margin-bottom: 22px;
+    }
+
+    .hero-divider span {
+        width: 72px;
+    }
+
+    .hero-follow {
+        padding: 28px 16px 8px;
+    }
+
+    .metrics-section {
+        padding: 64px 0 76px;
+    }
+
+    .metrics-row {
+        gap: 18px;
+        max-width: 360px;
+    }
+
+    .metric-item,
+    .metric-arch-center {
+        min-height: 330px;
+        padding: 118px 22px 34px;
+        border-radius: 170px 170px 0 0;
+    }
+
+    .metric-num {
+        font-size: 4.3rem;
+    }
+
+    .metric-title {
+        font-size: 0.7rem;
+        letter-spacing: 1.4px;
+    }
+
+    .metric-item p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+    }
+
+    .coach-section {
+        padding-top: 64px;
+        padding-bottom: 68px;
+    }
+
+    .coach-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 28px;
+        align-items: start;
+    }
+
+    .coach-media,
+    .coach-details {
+        grid-column: auto;
+        justify-self: stretch;
+        max-width: none;
+    }
+
+    .coach-media {
+        width: min(100%, 330px);
+        justify-self: center;
+    }
+
+    .coach-media .coach-photo {
+        height: auto;
+        aspect-ratio: 4 / 5;
+        border-radius: 22px;
+    }
+
+    .coach-media .coach-photo img {
+        object-position: center 12%;
+    }
+
+    .coach-title {
+        font-size: 1.25rem;
+    }
+
+    .coach-name-heading em {
+        white-space: normal;
+        font-size: 2rem;
+    }
+
+    .coach-copy .section-sub,
+    .coach-note {
+        font-size: 0.96rem;
+        line-height: 1.7;
+    }
+
+    .coach-pill-group {
+        gap: 8px;
+        margin-bottom: 0;
+    }
+
+    .coach-pill-group span {
+        padding: 8px 12px;
+        font-size: 0.76rem;
+    }
+
+    .philosophy-section {
+        padding: 74px 0;
+    }
+
+    .phi-bg {
+        background-attachment: scroll;
+    }
+
+    .phi-main-heading {
+        margin-bottom: 34px;
+    }
+
+    .phi-heading {
+        font-size: 2.15rem;
+        line-height: 1.17;
+    }
+
+    .phi-grid-4 {
+        gap: 16px;
+        padding: 0;
+    }
+
+    .phi-glass-card {
+        align-items: flex-start;
+        text-align: left;
+        border-radius: 16px;
+        padding: 24px 20px;
+    }
+
+    .phi-card-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+    }
+
+    .pain-section {
+        padding-top: 68px;
+        padding-bottom: 80px;
+    }
+
+    .pain-header {
+        margin-bottom: 34px;
+    }
+
+    .pain-grid {
+        max-width: 360px;
+        gap: 18px;
+    }
+
+    .pain-card,
+    .pain-card--mid {
+        height: 360px;
+        border-radius: 20px;
+    }
+
+    .pain-card-content {
+        padding: 24px 20px;
+    }
+
+    .pain-card-content h3 {
+        font-size: 1.35rem;
+    }
+
+    .pain-card-content p {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    .solution-wrap {
+        gap: 38px;
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .solution-section {
+        padding: 0;
+    }
+
+    .solution-overlay {
+        background: linear-gradient(to bottom, rgba(10,30,14,0.96) 0%, rgba(10,30,14,0.86) 100%);
+    }
+
+    .feature-list {
+        gap: 22px;
+    }
+
+    .feature-list li {
+        gap: 14px;
+    }
+
+    .feature-list strong {
+        font-size: 1.08rem;
+    }
+
+    .feature-list p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .arch-frame {
+        max-width: 310px;
+    }
+
+    .roadmap-step {
+        padding: 28px 0;
+        gap: 16px;
+    }
+
+    .step-content h3 {
+        font-size: 1.45rem;
+    }
+
+    .step-content p {
+        font-size: 0.94rem;
+    }
+
+    .cta-section {
+        padding: 78px 16px;
+    }
+
+    .cta-wrap .ornament-line {
+        margin-bottom: 18px;
+    }
+
+    .cta-heading {
+        font-size: 2.35rem;
+        line-height: 1.12;
+        margin: 22px 0 16px;
+    }
+
+    .cta-heading-line {
+        white-space: normal;
+    }
+
+    .cta-sub {
+        font-size: 0.96rem;
+        margin-bottom: 30px;
+    }
+
+    .cta-form input {
+        padding: 14px 16px;
+        font-size: 16px;
+    }
+
+    .btn-gold.btn-large {
+        padding: 15px 18px;
+        font-size: 0.78rem;
+        letter-spacing: 1px;
+    }
+
+    .site-footer {
+        padding: 34px 18px 26px;
+    }
+
+    .footer-main {
+        gap: 22px;
+    }
+
+    .footer-contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 0.94rem;
+    }
+
+    .footer-contact .dot {
+        display: none;
+    }
+
+    .site-footer .logo {
+        align-items: flex-start;
+    }
+
+    .site-footer .logo-title {
+        display: block;
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-heading {
+        font-size: 3.35rem;
+    }
+
+    .nav-cta {
+        max-width: 104px;
+        padding-inline: 8px;
+    }
+
+    .logo-name {
+        font-size: 0.9rem;
+    }
+
+    .metric-item,
+    .metric-arch-center {
+        min-height: 310px;
+        padding-top: 106px;
+    }
+
+    .pain-card,
+    .pain-card--mid {
+        height: 340px;
+    }
+}
+
 /* ======================== MUSIC TOGGLE ======================== */
 .music-toggle {
     position: fixed;
