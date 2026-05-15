@@ -2500,12 +2500,6 @@ a { text-decoration: none; color: inherit; }
     .pain-card--mid { height: 400px; margin-bottom: 0; }
     .solution-wrap { flex-direction: column; gap: 60px; }
     .arch-frame { max-width: 400px; margin-inline: auto; }
-    .metrics-row { grid-template-columns: 1fr; max-width: 520px; }
-    .metric-item,
-    .metric-arch-center {
-        min-height: 400px;
-        padding: 160px 32px 48px;
-    }
     .nav-links { display: none; }
     .form-row { grid-template-columns: 1fr; }
     .hero-heading { font-size: clamp(3.5rem, 12vw, 7rem); }
@@ -2523,14 +2517,6 @@ a { text-decoration: none; color: inherit; }
     .orn-line { max-width: 46px; }
     .hero-sub { font-size: 0.72rem; letter-spacing: 2px; }
     .hero-divider span { width: 92px; }
-    .metrics-section { padding: 72px 0 88px; }
-    .metric-item,
-    .metric-arch-center {
-        min-height: 360px;
-        padding: 140px 24px 42px;
-        border-radius: 210px 210px 0 0;
-    }
-    .metric-num { font-size: clamp(4rem, 21vw, 6rem); }
     .cta-heading-line { white-space: normal; }
     .roadmap-steps::before { display: none; }
     .roadmap-step { flex-direction: column; gap: 20px; }
@@ -2684,33 +2670,65 @@ a { text-decoration: none; color: inherit; }
     }
 
     .metrics-section {
-        padding: 64px 0 76px;
+        padding: 48px 0 56px;
+    }
+
+    .metrics-section .wrap {
+        padding-inline: 10px;
     }
 
     .metrics-row {
-        gap: 18px;
-        max-width: 360px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: end;
+        gap: 8px;
+        max-width: none;
+        width: 100%;
+        overflow: hidden;
     }
 
     .metric-item,
     .metric-arch-center {
-        min-height: 330px;
-        padding: 118px 22px 34px;
-        border-radius: 170px 170px 0 0;
+        min-height: 228px;
+        padding: 22px 8px 14px;
+        border-radius: 100px 100px 0 0;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+
+    .metric-arch-center {
+        min-height: 248px;
+        padding: 18px 8px 16px;
+        transform: scale(1.04);
+        transform-origin: bottom center;
     }
 
     .metric-num {
-        font-size: 4.3rem;
+        font-size: clamp(2.35rem, 9vw, 3.1rem);
+        margin-bottom: 4px;
+        line-height: 0.95;
+        text-shadow: 0 0 18px rgba(201, 168, 76, 0.4), 0 3px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .metric-num span {
+        font-size: 0.42em;
+        margin-top: 0.1em;
     }
 
     .metric-title {
-        font-size: 0.7rem;
-        letter-spacing: 1.4px;
+        font-size: clamp(0.78rem, 3.4vw, 0.98rem);
+        letter-spacing: 0.4px;
+        margin-bottom: 4px;
+        line-height: 1.22;
     }
 
     .metric-item p {
-        font-size: 0.88rem;
-        line-height: 1.55;
+        font-size: clamp(0.72rem, 3vw, 0.9rem);
+        line-height: 1.32;
+        max-width: none;
+        margin-inline: 0;
+        display: block;
+        overflow: visible;
     }
 
     .coach-section {
@@ -3093,10 +3111,33 @@ a { text-decoration: none; color: inherit; }
         font-size: 0.9rem;
     }
 
-    .metric-item,
+    .metrics-row {
+        gap: 6px;
+    }
+
+    .metric-item {
+        min-height: 210px;
+        padding: 18px 6px 12px;
+        border-radius: 88px 88px 0 0;
+    }
+
     .metric-arch-center {
-        min-height: 310px;
-        padding-top: 106px;
+        min-height: 228px;
+        padding: 14px 6px 14px;
+    }
+
+    .metric-num {
+        font-size: 2.2rem;
+    }
+
+    .metric-title {
+        font-size: 0.74rem;
+        letter-spacing: 0.3px;
+    }
+
+    .metric-item p {
+        font-size: 0.68rem;
+        line-height: 1.3;
     }
 
     .pain-card,
