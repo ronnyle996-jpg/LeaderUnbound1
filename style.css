@@ -612,7 +612,7 @@ a { text-decoration: none; color: inherit; }
 .phi-bg {
     position: absolute;
     inset: 0;
-    background-image: url('TRIẾT LÝ ĐỒNG HÀNH.jpg');
+    background-image: url('philosophy-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
