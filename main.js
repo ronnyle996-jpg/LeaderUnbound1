@@ -19,6 +19,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+    /* ── Phase cards: tap to expand on mobile ─────── */
+    const roadmapPhases = document.querySelector('.roadmap-phases');
+    const phaseCards = document.querySelectorAll('.phase-card');
+
+    const isCompactPhases = () => window.matchMedia('(max-width: 760px)').matches;
+
+    if (roadmapPhases && phaseCards.length) {
+        phaseCards.forEach((card) => {
+            card.addEventListener('click', (e) => {
+                if (!isCompactPhases()) return;
+
+                e.stopPropagation();
+                const expanded = card.classList.contains('is-expanded');
+
+                phaseCards.forEach((c) => c.classList.remove('is-expanded'));
+
+                if (!expanded) {
+                    card.classList.add('is-expanded');
+                    card.scrollIntoView({
+                        behavior: 'smooth',
+                        inline: 'center',
+                        block: 'nearest',
+                    });
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!roadmapPhases.contains(e.target)) {
+                phaseCards.forEach((c) => c.classList.remove('is-expanded'));
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (!isCompactPhases()) {
+                phaseCards.forEach((c) => c.classList.remove('is-expanded'));
+            }
+        }, { passive: true });
+    }
+
     /* ── Gold floating particles in hero ──────────── */
     const particleContainer = document.getElementById('particles');
     if (particleContainer) {

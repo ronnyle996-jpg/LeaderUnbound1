@@ -1612,6 +1612,10 @@ a { text-decoration: none; color: inherit; }
     color: rgba(245, 239, 227, 0.7);
 }
 
+.roadmap-scroll-hint {
+    display: none;
+}
+
 .roadmap-phases {
     display: flex;
     flex-direction: row;
@@ -1643,7 +1647,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .phase-card {
-    --phase-cover: url('U.webp');
+    --phase-cover: url('IMG PHASE 1.jpg');
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -1676,9 +1680,9 @@ a { text-decoration: none; color: inherit; }
     will-change: transform;
 }
 
-.phase-card:nth-child(2) { --phase-cover: url('Y.jpg'); }
-.phase-card:nth-child(3) { --phase-cover: url('C.webp'); }
-.phase-card:nth-child(4) { --phase-cover: url('UYC BACKGROUND.jpg'); }
+.phase-card:nth-child(2) { --phase-cover: url('IMG PHASE 2.jpg'); }
+.phase-card:nth-child(3) { --phase-cover: url('IMG PHASE 3.jpg'); }
+.phase-card:nth-child(4) { --phase-cover: url('IMG PHASE 4.jpg'); }
 
 .phase-card::before {
     content: '';
@@ -1704,7 +1708,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .phase-card:hover,
-.phase-card:focus-visible {
+.phase-card:focus-visible,
+.phase-card.is-expanded {
     z-index: 5;
     flex-basis: 440px;
     min-width: 440px;
@@ -1716,18 +1721,27 @@ a { text-decoration: none; color: inherit; }
     filter: saturate(1.08) brightness(1.08);
 }
 
+.phase-card.phase-bonus:hover,
+.phase-card.phase-bonus:focus-visible,
+.phase-card.phase-bonus.is-expanded {
+    flex-basis: 300px;
+    min-width: 300px;
+}
+
 .phase-card:hover::before,
-.phase-card:focus-visible::before {
+.phase-card:focus-visible::before,
+.phase-card.is-expanded::before {
     opacity: 1;
     transform: translateX(42%);
 }
 
 .phase-card:hover::after,
-.phase-card:focus-visible::after {
+.phase-card:focus-visible::after,
+.phase-card.is-expanded::after {
     opacity: 1;
 }
 
-.roadmap-phases:hover .phase-card:not(:hover) {
+.roadmap-phases:hover .phase-card:not(:hover):not(.is-expanded) {
     opacity: 0.72;
     transform: scale(0.94);
     filter: saturate(0.72) brightness(0.78);
@@ -1793,13 +1807,48 @@ a { text-decoration: none; color: inherit; }
     min-width: 0;
 }
 
+.phase-card:not(.phase-bonus):hover,
+.phase-card:not(.phase-bonus):focus-visible,
+.phase-card:not(.phase-bonus).is-expanded {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 22px;
+    height: auto;
+    min-height: 390px;
+    max-height: 480px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.phase-card:not(.phase-bonus):hover .phase-sidebar,
+.phase-card:not(.phase-bonus):focus-visible .phase-sidebar,
+.phase-card:not(.phase-bonus).is-expanded .phase-sidebar {
+    flex: 0 0 34%;
+    max-width: 148px;
+    padding-right: 8px;
+}
+
+.phase-card:not(.phase-bonus):hover .phase-main,
+.phase-card:not(.phase-bonus):focus-visible .phase-main,
+.phase-card:not(.phase-bonus).is-expanded .phase-main {
+    flex: 1;
+    min-width: 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .phase-title {
     font-size: 1.1rem;
     color: var(--cream);
     margin-bottom: 0;
     font-weight: 500;
     line-height: 1.35;
-    transition: color 0.35s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    transition: color 0.35s ease, font-size 0.35s ease, margin-bottom 0.35s ease;
 }
 
 .phase-card:hover .phase-title,
@@ -1807,81 +1856,118 @@ a { text-decoration: none; color: inherit; }
     color: #fff8e7;
 }
 
+.phase-card:not(.phase-bonus):hover .phase-title,
+.phase-card:not(.phase-bonus):focus-visible .phase-title,
+.phase-card:not(.phase-bonus).is-expanded .phase-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+    line-height: 1.3;
+}
+
 .phase-bullets {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
-    gap: 14px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    margin-top: 0;
-    transform: translateY(12px);
-    transition:
-        max-height 0.48s cubic-bezier(.2,.8,.2,1),
-        opacity 0.35s ease,
-        margin-top 0.35s ease,
-        transform 0.35s ease;
-}
-
     gap: 12px;
-    /* Hidden or condensed by default */
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s ease;
 }
 
-.phase-card:hover .phase-bullets {
-    max-height: 400px;
+.phase-card:not(.phase-bonus):hover .phase-bullets,
+.phase-card:not(.phase-bonus):focus-visible .phase-bullets,
+.phase-card:not(.phase-bonus).is-expanded .phase-bullets {
+    display: flex;
 }
 
 .phase-bullets li {
     position: relative;
-    padding-left: 24px;
-    font-size: 0.9rem;
-    color: rgba(245, 239, 227, 0.8);
-    line-height: 1.4;
+    padding-left: 22px;
+    font-size: 0.88rem;
+    color: rgba(245, 239, 227, 0.82);
+    line-height: 1.45;
 }
 
-.phase-bullets li::before {
+.phase-bullets li strong {
+    color: #fff8e7;
+    font-weight: 600;
 }
 
-.phase-bonus:hover .phase-desc,
-.phase-bonus:focus-visible .phase-desc {
-    max-height: 80px;
-    opacity: 1;
-    margin-top: 14px;
+.phase-card:nth-child(1) .phase-bullets li::before,
+.phase-card:nth-child(3) .phase-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #9ec4a8;
+    box-shadow: 0 0 8px rgba(158, 196, 168, 0.45);
 }
 
-.bonus-bullets {
-    list-style: none;
-    display: grid;
+.phase-card:nth-child(2) .phase-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 8px rgba(232, 201, 122, 0.4);
+}
+
+.phase-card:nth-child(3) .phase-bullets li::before {
+    background: rgba(245, 239, 227, 0.92);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+/* BONUS card */
+.phase-bonus {
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+.phase-bonus-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    margin-top: 0;
-    transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.35s ease;
 }
 
-.phase-bonus:hover .bonus-bullets,
-.phase-bonus:focus-visible .bonus-bullets {
-    max-height: 150px;
-    opacity: 1;
-    margin-top: 20px;
+.bonus-tag {
+    display: block;
+    font-family: var(--font-caps);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    line-height: 1.2;
 }
 
-.bonus-bullets li {
-    color: rgba(245, 239, 227, 0.78);
+.bonus-title {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.35;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.bonus-desc {
+    font-family: var(--font-body);
     font-size: 0.92rem;
-}
-
-.bonus-bullets li::before {
-    content: '+';
-    color: var(--gold-light);
-    margin-right: 10px;
+    font-weight: 400;
+    color: rgba(245, 239, 227, 0.88);
+    line-height: 1.45;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .phase-playbar {
@@ -2015,38 +2101,77 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 760px) {
     .roadmap-header {
-        margin-bottom: 36px;
+        margin-bottom: 28px;
     }
 
     .roadmap-main-title {
-        font-size: 2.25rem;
+        font-size: 2rem;
         line-height: 1.12;
     }
 
+    .roadmap-intro {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .roadmap-scroll-hint {
+        display: block;
+        margin-top: 14px;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(232, 201, 122, 0.72);
+    }
+
     .roadmap-phases {
-        gap: 14px;
+        gap: 12px;
         margin-inline: -18px;
-        padding: 26px 18px 36px;
+        padding: 20px 18px 32px;
         max-width: none;
+        scroll-padding-inline: 18px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
     }
 
     .phase-card {
-        flex: 0 0 210px;
-        min-width: 210px;
-        height: 340px;
-        padding: 20px;
+        flex: 0 0 78vw;
+        min-width: 78vw;
+        max-width: 320px;
+        height: auto;
+        min-height: 360px;
+        padding: 18px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 
     .phase-card:hover,
-    .phase-card:focus-visible {
-        flex-basis: 330px;
-        min-width: 330px;
-        transform: translateY(-8px) scale(1.015);
+    .phase-card:focus-visible,
+    .phase-card.is-expanded {
+        flex-basis: 86vw;
+        min-width: 86vw;
+        max-width: 340px;
+        transform: translateY(-6px);
     }
 
-    .roadmap-phases:hover .phase-card:not(:hover) {
+    .phase-card.phase-bonus:hover,
+    .phase-card.phase-bonus:focus-visible,
+    .phase-card.phase-bonus.is-expanded {
+        flex-basis: 78vw;
+        min-width: 78vw;
+        max-width: 320px;
+    }
+
+    .phase-card:not(.phase-bonus):hover,
+    .phase-card:not(.phase-bonus):focus-visible,
+    .phase-card:not(.phase-bonus).is-expanded {
+        min-height: 360px;
+        max-height: min(72vh, 520px);
+    }
+
+    .roadmap-phases:hover .phase-card:not(:hover):not(.is-expanded) {
         opacity: 1;
         transform: none;
+        filter: none;
     }
 
     .phase-sidebar {
@@ -2055,39 +2180,83 @@ a { text-decoration: none; color: inherit; }
     }
 
     .phase-tag {
-        margin-bottom: 14px;
+        margin-bottom: 12px;
+        font-size: 0.64rem;
+        letter-spacing: 1.5px;
     }
 
     .phase-label {
-        font-size: 1.65rem;
+        font-size: 1.55rem;
+    }
+
+    .phase-modules {
+        font-size: 0.8rem;
     }
 
     .phase-title {
-        font-size: 1rem;
-        line-height: 1.35;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .phase-bullets {
+        gap: 10px;
     }
 
     .phase-bullets li {
-        font-size: 0.82rem;
-        padding-left: 22px;
+        font-size: 0.8rem;
+        padding-left: 18px;
+        line-height: 1.42;
+    }
+
+    .phase-card:not(.phase-bonus):hover,
+    .phase-card:not(.phase-bonus):focus-visible,
+    .phase-card:not(.phase-bonus).is-expanded {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .phase-card:not(.phase-bonus):hover .phase-sidebar,
+    .phase-card:not(.phase-bonus):focus-visible .phase-sidebar,
+    .phase-card:not(.phase-bonus).is-expanded .phase-sidebar {
+        flex: none;
+        max-width: none;
+        width: 100%;
+    }
+
+    .phase-card:not(.phase-bonus):hover .phase-main,
+    .phase-card:not(.phase-bonus):focus-visible .phase-main,
+    .phase-card:not(.phase-bonus).is-expanded .phase-main {
+        justify-content: flex-start;
     }
 
     .phase-bonus {
-        padding: 20px;
-        text-align: left;
+        padding: 18px;
+    }
+
+    .bonus-tag {
+        font-size: 0.88rem;
+    }
+
+    .bonus-title {
+        font-size: 0.95rem;
+    }
+
+    .bonus-desc {
+        font-size: 0.84rem;
     }
 
     .phase-playbar {
-        border-radius: 28px;
-        padding: 16px;
-        gap: 16px;
+        border-radius: 24px;
+        padding: 14px 16px;
+        gap: 14px;
         align-items: stretch;
         flex-wrap: wrap;
+        margin-top: 8px;
     }
 
     .phase-controls {
         order: 1;
-        gap: 18px;
+        gap: 16px;
     }
 
     .phase-now {
@@ -2096,9 +2265,39 @@ a { text-decoration: none; color: inherit; }
         max-width: none;
     }
 
+    .phase-now strong {
+        font-size: 0.92rem;
+    }
+
+    .phase-now div > span {
+        font-size: 0.78rem;
+    }
+
     .phase-eq,
     .phase-menu-lines {
         order: 2;
+    }
+
+    .format-container {
+        margin-top: 8px;
+        padding: 24px 18px;
+    }
+
+    .format-title {
+        font-size: 1.35rem;
+    }
+
+    .format-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .format-val {
+        font-size: 2rem;
+    }
+
+    .format-label {
+        font-size: 0.78rem;
     }
 }
 
@@ -2763,6 +2962,46 @@ a { text-decoration: none; color: inherit; }
         max-width: 310px;
     }
 
+    .uyc-framework-section {
+        padding: 72px 0;
+    }
+
+    .uyc-framework-title {
+        font-size: 2.1rem;
+    }
+
+    .uyc-framework-sub,
+    .uyc-framework-quote {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .uyc-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .uyc-card {
+        min-height: 0;
+    }
+
+    .uyc-card-content-glass {
+        padding: 22px 18px;
+    }
+
+    .uyc-card-title {
+        font-size: 1.65rem;
+    }
+
+    .uyc-card-desc,
+    .uyc-card-list li {
+        font-size: 0.88rem;
+    }
+
+    .roadmap-section {
+        padding: 72px 0 64px;
+    }
+
     .roadmap-step {
         padding: 28px 0;
         gap: 16px;
@@ -2880,6 +3119,27 @@ a { text-decoration: none; color: inherit; }
     .ob-item-number {
         font-size: 2.85rem;
     }
+
+    .roadmap-main-title {
+        font-size: 1.75rem;
+    }
+
+    .phase-card {
+        flex: 0 0 84vw;
+        min-width: 84vw;
+        min-height: 340px;
+        padding: 16px;
+    }
+
+    .phase-card:hover,
+    .phase-card.is-expanded {
+        flex-basis: 90vw;
+        min-width: 90vw;
+    }
+
+    .format-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ======================== MUSIC TOGGLE ======================== */
@@ -2948,8 +3208,18 @@ a { text-decoration: none; color: inherit; }
 /* Responsive adjust */
 @media (max-width: 600px) {
     .music-toggle {
-        bottom: 20px;
-        left: 20px;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        left: max(20px, env(safe-area-inset-left));
         padding: 8px 14px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .phase-card {
+        will-change: auto;
+    }
+
+    .phase-card:active {
+        opacity: 0.94;
     }
 }
